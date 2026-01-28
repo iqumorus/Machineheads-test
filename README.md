@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+Разработать панель администратора на react js
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Приложение должно обмениваться данными по REST API с бекендом.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Документация REST API:
+http://rest-test.machineheads.ru/documentation/
 
-## React Compiler
+REST API приложение:
+http://rest-test.machineheads.ru/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Для тестирования методов API можете использовать коллекцию в Postman:
+https://drive.google.com/file/d/1-wic6-oP_UQlnktrQEZESYv02YYAWKRf/view?usp=sharing
 
-## Expanding the ESLint configuration
+(!)
+Дизайн приложения значения не имеет (хоть голый HTML) или можете использовать любую UI библиотеку.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Минимальный функционал для панели администратора:
+Авторизация с сохранением токена и рефреш-токена в куках;
+Обновление токена с помощью рефреш-токена, при истечении времени жизни токена;
+Список постов с постраничной навигацией (информация для постранички возвращается в заголовках ответа на запрос списка постов).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Максимальный функционал для панели администратора (по желанию):
+Добавление поста;
+Редактирование поста;
+Удаление поста;
+Список/добавление/редактирование/удаление авторов;
+Список/добавление/редактирование/удаление тегов.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+При добавлении и редактировании поста обязательно обрабатывать ошибки валидации данных а также системные ошибки, возвращаемые REST приложением и выводить их в форме.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Для авторизации используйте данные:
+E-mail: test@test.ru
+Пароль: khro2ij3n2730
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+При разработке обязательно использовать библиотеки:
+react
+redux
+redux-saga
+react-router-dom
+connected-react-router
+Обязательно использование TypeScript. 
+Остальные библиотеки на ваше усмотрение.
+Не обязательно, но будет плюсом использование в разработке:
+	
+UI библиотека https://ant.design/
+Lazy load components
+Lazy load redux reducers https://github.com/microsoft/redux-dynamic-modules
