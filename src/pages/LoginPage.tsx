@@ -26,7 +26,7 @@ export const LoginPage: React.FC = () => {
               <input
                 type="email"
                 className="form-control"
-                value={email}
+                // value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 required
               />
@@ -36,7 +36,7 @@ export const LoginPage: React.FC = () => {
               <input
                 type="password"
                 className="form-control"
-                value={password}
+                // value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 required
               />
