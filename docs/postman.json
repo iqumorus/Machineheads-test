@@ -1,0 +1,6549 @@
+{
+	"info": {
+		"_postman_id": "995bec33-1e34-4d55-9eda-b7ca58eb3d53",
+		"name": "Rest Test Machineheads API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Token Generate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const result = pm.response.json();\r",
+									"pm.environment.set(\"access_token\", result.access_token);\r",
+									"pm.environment.set(\"refresh_token\", result.refresh_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/token-generate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"token-generate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Data Validation Failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "<string>",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "<string>",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/token-generate",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"token-generate"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"field\": \"nostrud quis\",\n  \"message\": \"aute\"\n },\n {\n  \"field\": \"in irure in\",\n  \"message\": \"labore magna\"\n }\n]"
+						},
+						{
+							"name": "Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "<string>",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "<string>",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/token-generate",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"token-generate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"access_token\": \"in proident\",\n \"refresh_token\": \"Excepteur aliquip qui cupidatat\",\n \"access_expired_at\": -8051627,\n \"refresh_expired_at\": -58752279\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "<string>",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "<string>",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/token-generate",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"token-generate"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Token Refresh",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/token-refresh",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"token-refresh"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "refresh_token",
+											"value": "<string>",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/token-refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"token-refresh"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+						},
+						{
+							"name": "Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "refresh_token",
+											"value": "<string>",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/token-refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"token-refresh"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"access_token\": \"in proident\",\n \"refresh_token\": \"Excepteur aliquip qui cupidatat\",\n \"access_expired_at\": -8051627,\n \"refresh_expired_at\": -58752279\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "manage",
+			"item": [
+				{
+					"name": "authors",
+					"item": [
+						{
+							"name": "Authors",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/manage/authors",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"authors"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Authors",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"id\": 2284267,\n  \"name\": \"ipsum\",\n  \"lastName\": \"Lorem\",\n  \"secondName\": \"tempor est qui\",\n  \"avatar\": {\n   \"id\": 38413668,\n   \"name\": \"incididunt\",\n   \"url\": \"et cupidatat velit\"\n  },\n  \"updatedAt\": \"1969-08-15T03:23:29.684Z\",\n  \"createdAt\": \"1967-06-20T07:11:28.913Z\"\n },\n {\n  \"id\": 8904196,\n  \"name\": \"reprehenderit non\",\n  \"lastName\": \"e\",\n  \"secondName\": \"proident in\",\n  \"avatar\": {\n   \"id\": 39671917,\n   \"name\": \"dolore fugiat\",\n   \"url\": \"ea ad veniam elit\"\n  },\n  \"updatedAt\": \"2005-08-03T10:15:25.245Z\",\n  \"createdAt\": \"1980-04-17T08:58:28.278Z\"\n }\n]"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Add author",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Иван",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Иванов",
+											"type": "text"
+										},
+										{
+											"key": "secondName",
+											"value": "Иванович",
+											"type": "text"
+										},
+										{
+											"key": "shortDescription",
+											"value": "Стихоплёт",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "avatar",
+											"type": "file",
+											"src": "/D:/image/разные/4176_1191689844.gif"
+										},
+										{
+											"key": "removeAvatar",
+											"value": "<boolean>",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/manage/authors/add",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"authors",
+										"add"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "lastName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "secondName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "shortDescription",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "avatar",
+													"value": "<file>",
+													"type": "text"
+												},
+												{
+													"key": "removeAvatar",
+													"value": "<boolean>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"add"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "lastName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "secondName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "shortDescription",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "avatar",
+													"value": "<file>",
+													"type": "text"
+												},
+												{
+													"key": "removeAvatar",
+													"value": "<boolean>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"add"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Data Validation Failed",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "lastName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "secondName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "shortDescription",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "avatar",
+													"value": "<file>",
+													"type": "text"
+												},
+												{
+													"key": "removeAvatar",
+													"value": "<boolean>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"add"
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"field\": \"in dolor in eu\",\n  \"message\": \"do\"\n },\n {\n  \"field\": \"adipisicing aliquip Excepteur officia\",\n  \"message\": \"in\"\n }\n]"
+								},
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "lastName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "secondName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "shortDescription",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "avatar",
+													"value": "<file>",
+													"type": "text"
+												},
+												{
+													"key": "removeAvatar",
+													"value": "<boolean>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"add"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "false"
+								}
+							]
+						},
+						{
+							"name": "Edit author",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "<string>",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "<string>",
+											"type": "text"
+										},
+										{
+											"key": "secondName",
+											"value": "<string>",
+											"type": "text"
+										},
+										{
+											"key": "shortDescription",
+											"value": "<string>",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "<string>",
+											"type": "text"
+										},
+										{
+											"key": "avatar",
+											"value": "<file>",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "removeAvatar",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/manage/authors/edit?id=3",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"authors",
+										"edit"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "3",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Data Validation Failed",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "lastName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "secondName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "shortDescription",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "avatar",
+													"value": "<file>",
+													"type": "text"
+												},
+												{
+													"key": "removeAvatar",
+													"value": "<boolean>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"field\": \"in dolor in eu\",\n  \"message\": \"do\"\n },\n {\n  \"field\": \"adipisicing aliquip Excepteur officia\",\n  \"message\": \"in\"\n }\n]"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "lastName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "secondName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "shortDescription",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "avatar",
+													"value": "<file>",
+													"type": "text"
+												},
+												{
+													"key": "removeAvatar",
+													"value": "<boolean>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "lastName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "secondName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "shortDescription",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "avatar",
+													"value": "<file>",
+													"type": "text"
+												},
+												{
+													"key": "removeAvatar",
+													"value": "<boolean>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "lastName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "secondName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "shortDescription",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "avatar",
+													"value": "<file>",
+													"type": "text"
+												},
+												{
+													"key": "removeAvatar",
+													"value": "<boolean>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "lastName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "secondName",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "shortDescription",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "avatar",
+													"value": "<file>",
+													"type": "text"
+												},
+												{
+													"key": "removeAvatar",
+													"value": "<boolean>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "false"
+								}
+							]
+						},
+						{
+							"name": "Remove author",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/manage/authors/remove?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"authors",
+										"remove"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/remove?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/remove?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/remove?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/remove?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "false"
+								}
+							]
+						},
+						{
+							"name": "Multiple remove authors",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/manage/authors/multiple-remove?id=<integer>&id=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"authors",
+										"multiple-remove"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) "
+										},
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/multiple-remove?id=<integer>&id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"multiple-remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												},
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "true"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/multiple-remove?id=<integer>&id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"multiple-remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												},
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/multiple-remove?id=<integer>&id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"multiple-remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												},
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Detail author",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/manage/authors/detail?id=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"authors",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/detail?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"detail"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Author",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/detail?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"detail"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": -73869611,\n \"name\": \"pariatur dolor voluptate\",\n \"lastName\": \"mollit pariatur voluptate\",\n \"secondName\": \"ea\",\n \"shortDescription\": \"non dolor magna dolor\",\n \"description\": \"dolor non id\",\n \"avatar\": {\n  \"id\": 37997424,\n  \"name\": \"Duis eiusmod esse deserunt\",\n  \"url\": \"dolore ut Ut\"\n },\n \"updatedAt\": \"2010-05-05T20:17:42.478Z\",\n \"createdAt\": \"1985-09-11T20:41:28.035Z\"\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/authors/detail?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"authors",
+												"detail"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "posts",
+					"item": [
+						{
+							"name": "Posts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/manage/posts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"posts"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Posts",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"id\": 99012431,\n  \"title\": \"nulla ipsum voluptate\",\n  \"code\": \"commodo\",\n  \"authorName\": \"amet\",\n  \"previewPicture\": {\n   \"id\": 37908343,\n   \"name\": \"exercitation dolor deserunt nisi\",\n   \"url\": \"esse officia\"\n  },\n  \"tagNames\": [\n   \"deserunt pariatur\",\n   \"dolore ullamco sunt\"\n  ],\n  \"updatedAt\": \"2000-05-29T11:28:42.409Z\",\n  \"createdAt\": \"1962-12-11T14:35:38.072Z\"\n },\n {\n  \"id\": 5015866,\n  \"title\": \"aute cillum anim\",\n  \"code\": \"tempor\",\n  \"authorName\": \"deserunt\",\n  \"previewPicture\": {\n   \"id\": 19429776,\n   \"name\": \"sed dolore\",\n   \"url\": \"laboris ullamco sint eiusmod laborum\"\n  },\n  \"tagNames\": [\n   \"a\",\n   \"eiusmod et deserunt\"\n  ],\n  \"updatedAt\": \"1968-12-21T10:40:37.544Z\",\n  \"createdAt\": \"1951-07-27T19:42:05.308Z\"\n }\n]"
+								}
+							]
+						},
+						{
+							"name": "Add post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "code",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "title",
+											"value": "Какой-то пост2",
+											"type": "text"
+										},
+										{
+											"key": "authorId",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "tagIds[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "tagIds[]",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "tagIds[]",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "text",
+											"value": "Какой-то текст2",
+											"type": "text"
+										},
+										{
+											"key": "previewPicture",
+											"type": "file",
+											"src": "/D:/image/разные/13950_1205379597.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/manage/posts/add",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"posts",
+										"add"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Data Validation Failed",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "title",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "authorId",
+													"value": "<integer>",
+													"type": "text"
+												},
+												{
+													"key": "tagIds",
+													"value": "[\"<integer>\",\"<integer>\"]",
+													"type": "text"
+												},
+												{
+													"key": "text",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "previewPicture",
+													"value": "<file>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"add"
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"field\": \"in dolor in eu\",\n  \"message\": \"do\"\n },\n {\n  \"field\": \"adipisicing aliquip Excepteur officia\",\n  \"message\": \"in\"\n }\n]"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "title",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "authorId",
+													"value": "<integer>",
+													"type": "text"
+												},
+												{
+													"key": "tagIds",
+													"value": "[\"<integer>\",\"<integer>\"]",
+													"type": "text"
+												},
+												{
+													"key": "text",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "previewPicture",
+													"value": "<file>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"add"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "title",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "authorId",
+													"value": "<integer>",
+													"type": "text"
+												},
+												{
+													"key": "tagIds",
+													"value": "[\"<integer>\",\"<integer>\"]",
+													"type": "text"
+												},
+												{
+													"key": "text",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "previewPicture",
+													"value": "<file>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"add"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Id",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "title",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "authorId",
+													"value": "<integer>",
+													"type": "text"
+												},
+												{
+													"key": "tagIds",
+													"value": "[\"<integer>\",\"<integer>\"]",
+													"type": "text"
+												},
+												{
+													"key": "text",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "previewPicture",
+													"value": "<file>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"add"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "-79335313"
+								}
+							]
+						},
+						{
+							"name": "Edit post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "code",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "title",
+											"value": "Какой-то пост3",
+											"type": "text"
+										},
+										{
+											"key": "authorId",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "tagIds[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "tagIds[]",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "tagIds[]",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "text",
+											"value": "Какой-то текст",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/manage/posts/edit?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"posts",
+										"edit"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Data Validation Failed",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "title",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "authorId",
+													"value": "<integer>",
+													"type": "text"
+												},
+												{
+													"key": "tagIds",
+													"value": "[\"<integer>\",\"<integer>\"]",
+													"type": "text"
+												},
+												{
+													"key": "text",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "previewPicture",
+													"value": "<file>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"field\": \"in dolor in eu\",\n  \"message\": \"do\"\n },\n {\n  \"field\": \"adipisicing aliquip Excepteur officia\",\n  \"message\": \"in\"\n }\n]"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "title",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "authorId",
+													"value": "<integer>",
+													"type": "text"
+												},
+												{
+													"key": "tagIds",
+													"value": "[\"<integer>\",\"<integer>\"]",
+													"type": "text"
+												},
+												{
+													"key": "text",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "previewPicture",
+													"value": "<file>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "title",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "authorId",
+													"value": "<integer>",
+													"type": "text"
+												},
+												{
+													"key": "tagIds",
+													"value": "[\"<integer>\",\"<integer>\"]",
+													"type": "text"
+												},
+												{
+													"key": "text",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "previewPicture",
+													"value": "<file>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "title",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "authorId",
+													"value": "<integer>",
+													"type": "text"
+												},
+												{
+													"key": "tagIds",
+													"value": "[\"<integer>\",\"<integer>\"]",
+													"type": "text"
+												},
+												{
+													"key": "text",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "previewPicture",
+													"value": "<file>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "true"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "title",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "authorId",
+													"value": "<integer>",
+													"type": "text"
+												},
+												{
+													"key": "tagIds",
+													"value": "[\"<integer>\",\"<integer>\"]",
+													"type": "text"
+												},
+												{
+													"key": "text",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "previewPicture",
+													"value": "<file>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Remove post",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/manage/posts/remove?id=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"posts",
+										"remove"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/remove?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "true"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/remove?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/remove?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/remove?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Detail post",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/manage/posts/detail?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"posts",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/detail?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"detail"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/detail?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"detail"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Post",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/posts/detail?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"posts",
+												"detail"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": 23288519,\n \"title\": \"eiusmod\",\n \"code\": \"Duis\",\n \"text\": \"fugiat Ut\",\n \"previewPicture\": {\n  \"id\": 58592410,\n  \"name\": \"elit dolore do\",\n  \"url\": \"occaecat reprehenderit esse exercita\"\n },\n \"author\": {\n  \"id\": -19546375,\n  \"fullName\": \"ea magna Ut Duis\",\n  \"avatar\": {\n   \"id\": -75496999,\n   \"name\": \"aliqua ea sint dolor dolore\",\n   \"url\": \"dolor et labore veniam proident\"\n  }\n },\n \"tags\": [\n  {\n   \"id\": -32900902,\n   \"name\": \"consequat aliquip et\",\n   \"code\": \"enim fugiat minim\"\n  },\n  {\n   \"id\": 383870,\n   \"name\": \"laboris irure ullamco quis\",\n   \"code\": \"est cupidatat\"\n  }\n ],\n \"updatedAt\": \"1957-09-06T08:06:37.850Z\",\n \"createdAt\": \"2000-07-10T00:58:40.803Z\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "tags",
+					"item": [
+						{
+							"name": "Tags",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/manage/tags",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"tags"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Tags",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"id\": 51734726,\n  \"name\": \"Ut ad ex Lorem officia\",\n  \"code\": \"dolore ullamc\",\n  \"sort\": 5117545,\n  \"updatedAt\": \"2010-08-15T07:05:46.591Z\",\n  \"createdAt\": \"2009-05-24T15:44:56.638Z\"\n },\n {\n  \"id\": 70805814,\n  \"name\": \"velit dolore fugiat Excepteur\",\n  \"code\": \"non voluptate ut labore\",\n  \"sort\": 21642318,\n  \"updatedAt\": \"1956-08-22T13:28:03.957Z\",\n  \"createdAt\": \"1961-03-05T04:24:36.684Z\"\n }\n]"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Add tag",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "code",
+											"value": "<string>",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "Страшные",
+											"type": "text"
+										},
+										{
+											"key": "sort",
+											"value": "<integer>",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/manage/tags/add",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"tags",
+										"add"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "<integer>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"add"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Data Validation Failed",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "<integer>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"add"
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"field\": \"in dolor in eu\",\n  \"message\": \"do\"\n },\n {\n  \"field\": \"adipisicing aliquip Excepteur officia\",\n  \"message\": \"in\"\n }\n]"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "<integer>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"add"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "<integer>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"add"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "true"
+								}
+							]
+						},
+						{
+							"name": "Edit tag",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "code",
+											"value": "<string>",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "Улёт",
+											"type": "text"
+										},
+										{
+											"key": "sort",
+											"value": "<integer>",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/manage/tags/edit?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"tags",
+										"edit"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "<integer>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "<integer>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Data Validation Failed",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "<integer>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+									"code": 422,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n {\n  \"field\": \"in dolor in eu\",\n  \"message\": \"do\"\n },\n {\n  \"field\": \"adipisicing aliquip Excepteur officia\",\n  \"message\": \"in\"\n }\n]"
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "<integer>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "code",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "<integer>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/edit?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "true"
+								}
+							]
+						},
+						{
+							"name": "Remove tag",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/manage/tags/remove?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"tags",
+										"remove"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/remove?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/remove?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/remove?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/remove?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "true"
+								}
+							]
+						},
+						{
+							"name": "Multiple remove tags",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "<Bearer Token>",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/manage/tags/multiple-remove?id=<integer>&id=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"tags",
+										"multiple-remove"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) "
+										},
+										{
+											"key": "id",
+											"value": "<integer>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/multiple-remove?id=<integer>&id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"multiple-remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												},
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/multiple-remove?id=<integer>&id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"multiple-remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												},
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/multiple-remove?id=<integer>&id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"multiple-remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												},
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "true"
+								}
+							]
+						},
+						{
+							"name": "Detail tag",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/manage/tags/detail?id=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"manage",
+										"tags",
+										"detail"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/detail?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"detail"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/detail?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"detail"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+								},
+								{
+									"name": "Tag",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/manage/tags/detail?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"tags",
+												"detail"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": 96804079,\n \"name\": \"occaecat et labore\",\n \"code\": \"mollit amet ullamco\",\n \"sort\": 2081652,\n \"updatedAt\": \"1943-11-25T20:25:30.339Z\",\n \"createdAt\": \"1950-12-12T04:08:15.846Z\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "menu",
+					"item": [
+						{
+							"name": "items",
+							"item": [
+								{
+									"name": "Tree list menu items",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "<Bearer Token>",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/manage/menu/items/tree-list?typeId=<string>&excludeId=[\"<integer>\",\"<integer>\"]",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"menu",
+												"items",
+												"tree-list"
+											],
+											"query": [
+												{
+													"key": "typeId",
+													"value": "<string>",
+													"description": "(Required) "
+												},
+												{
+													"key": "excludeId",
+													"value": "[\"<integer>\",\"<integer>\"]"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/tree-list?typeId=<string>&excludeId=<integer>,<integer>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"tree-list"
+													],
+													"query": [
+														{
+															"key": "typeId",
+															"value": "<string>"
+														},
+														{
+															"key": "excludeId",
+															"value": "<integer>,<integer>"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Menu items",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/tree-list?typeId=<string>&excludeId=<integer>,<integer>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"tree-list"
+													],
+													"query": [
+														{
+															"key": "typeId",
+															"value": "<string>"
+														},
+														{
+															"key": "excludeId",
+															"value": "<integer>,<integer>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n {\n  \"id\": 79737121,\n  \"name\": \"culpa est\",\n  \"parentId\": 82015600,\n  \"isParent\": 80635662,\n  \"customUrl\": \"aliquip qui exercitation mollit\",\n  \"route\": \"nulla commodo et ea\",\n  \"routeParams\": \"ipsum sint\",\n  \"leftTree\": 57989173,\n  \"rightTree\": 52382494,\n  \"lvlTree\": 3411635,\n  \"sort\": 13554171,\n  \"updatedAt\": \"2020-09-27T06:42:22.209Z\",\n  \"createdAt\": \"1968-03-28T15:48:17.713Z\"\n },\n {\n  \"id\": -57867680,\n  \"name\": \"sunt dolor\",\n  \"parentId\": 22470898,\n  \"isParent\": -45652807,\n  \"customUrl\": \"do sit\",\n  \"route\": \"mini\",\n  \"routeParams\": \"labore culpa exercit\",\n  \"leftTree\": -75917320,\n  \"rightTree\": 94297969,\n  \"lvlTree\": -45340909,\n  \"sort\": 97646267,\n  \"updatedAt\": \"2019-08-06T02:47:29.588Z\",\n  \"createdAt\": \"2003-01-15T00:12:22.021Z\"\n }\n]"
+										}
+									]
+								},
+								{
+									"name": "Tree menu items",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "<Bearer Token>",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/manage/menu/items/tree?typeId=<string>&excludeId=[\"<integer>\",\"<integer>\"]",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"menu",
+												"items",
+												"tree"
+											],
+											"query": [
+												{
+													"key": "typeId",
+													"value": "<string>",
+													"description": "(Required) "
+												},
+												{
+													"key": "excludeId",
+													"value": "[\"<integer>\",\"<integer>\"]"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/tree?typeId=<string>&excludeId=<integer>,<integer>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"tree"
+													],
+													"query": [
+														{
+															"key": "typeId",
+															"value": "<string>"
+														},
+														{
+															"key": "excludeId",
+															"value": "<integer>,<integer>"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Menu items",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/tree?typeId=<string>&excludeId=<integer>,<integer>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"tree"
+													],
+													"query": [
+														{
+															"key": "typeId",
+															"value": "<string>"
+														},
+														{
+															"key": "excludeId",
+															"value": "<integer>,<integer>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n {\n  \"id\": -80802558,\n  \"name\": \"sed sit\",\n  \"parentId\": 82632452,\n  \"isParent\": -49154437,\n  \"customUrl\": \"voluptate occaecat\",\n  \"route\": \"nisi cillum laboris \",\n  \"routeParams\": \"sed non consequat ex nostru\",\n  \"leftTree\": 42258355,\n  \"rightTree\": 30526208,\n  \"lvlTree\": 23778228,\n  \"sort\": -7486954,\n  \"children\": [\n   {\n    \"value\": \"<Circular reference to #/components/schemas/Menu.Tree.Item detected>\"\n   },\n   {\n    \"value\": \"<Circular reference to #/components/schemas/Menu.Tree.Item detected>\"\n   }\n  ],\n  \"updatedAt\": \"1999-11-25T16:24:24.870Z\",\n  \"createdAt\": \"1992-03-18T23:53:40.048Z\"\n },\n {\n  \"id\": -67226179,\n  \"name\": \"fugiat sint in qui\",\n  \"parentId\": -54659775,\n  \"isParent\": 97060044,\n  \"customUrl\": \"elit culpa enim e\",\n  \"route\": \"ut dolor\",\n  \"routeParams\": \"ipsum ut\",\n  \"leftTree\": 67027212,\n  \"rightTree\": 98225907,\n  \"lvlTree\": -90454851,\n  \"sort\": 26004363,\n  \"children\": [\n   {\n    \"value\": \"<Circular reference to #/components/schemas/Menu.Tree.Item detected>\"\n   },\n   {\n    \"value\": \"<Circular reference to #/components/schemas/Menu.Tree.Item detected>\"\n   }\n  ],\n  \"updatedAt\": \"1944-01-24T22:54:01.243Z\",\n  \"createdAt\": \"1977-08-13T11:03:05.289Z\"\n }\n]"
+										}
+									]
+								},
+								{
+									"name": "Add menu item",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "<Bearer Token>",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "typeId",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "parentId",
+													"value": "<integer>",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "url",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "<integer>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/menu/items/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"menu",
+												"items",
+												"add"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Bad Request",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "typeId",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "parentId",
+															"value": "<integer>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "url",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "sort",
+															"value": "<integer>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/add",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"add"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "typeId",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "parentId",
+															"value": "<integer>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "url",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "sort",
+															"value": "<integer>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/add",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"add"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "typeId",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "parentId",
+															"value": "<integer>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "url",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "sort",
+															"value": "<integer>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/add",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"add"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "true"
+										},
+										{
+											"name": "Data Validation Failed",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "typeId",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "parentId",
+															"value": "<integer>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "url",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "sort",
+															"value": "<integer>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/add",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"add"
+													]
+												}
+											},
+											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+											"code": 422,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n {\n  \"field\": \"in dolor in eu\",\n  \"message\": \"do\"\n },\n {\n  \"field\": \"adipisicing aliquip Excepteur officia\",\n  \"message\": \"in\"\n }\n]"
+										}
+									]
+								},
+								{
+									"name": "Edit menu item",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "<Bearer Token>",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "typeId",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "parentId",
+													"value": "<integer>",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "url",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "<integer>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/menu/items/edit?id=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"menu",
+												"items",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Data Validation Failed",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "typeId",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "parentId",
+															"value": "<integer>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "url",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "sort",
+															"value": "<integer>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/edit?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"edit"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+											"code": 422,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n {\n  \"field\": \"in dolor in eu\",\n  \"message\": \"do\"\n },\n {\n  \"field\": \"adipisicing aliquip Excepteur officia\",\n  \"message\": \"in\"\n }\n]"
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "typeId",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "parentId",
+															"value": "<integer>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "url",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "sort",
+															"value": "<integer>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/edit?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"edit"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Bad Request",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "typeId",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "parentId",
+															"value": "<integer>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "url",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "sort",
+															"value": "<integer>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/edit?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"edit"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "typeId",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "parentId",
+															"value": "<integer>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "url",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "sort",
+															"value": "<integer>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/edit?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"edit"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+										},
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "typeId",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "parentId",
+															"value": "<integer>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "url",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "sort",
+															"value": "<integer>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/edit?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"edit"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "true"
+										}
+									]
+								},
+								{
+									"name": "Remove menu item",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "<Bearer Token>",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/manage/menu/items/remove?id=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"menu",
+												"items",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<integer>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/remove?id=<integer>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"remove"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<integer>"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/remove?id=<integer>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"remove"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<integer>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "true"
+										},
+										{
+											"name": "Bad Request",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/remove?id=<integer>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"remove"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<integer>"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/items/remove?id=<integer>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"items",
+														"remove"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<integer>"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "types",
+							"item": [
+								{
+									"name": "Menu types",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "<Bearer Token>",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/manage/menu/types",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"menu",
+												"types"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Type[]",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n {\n  \"id\": \"aliq\",\n  \"name\": \"laboris officia aliquip reprehenderit consectetur\",\n  \"updatedAt\": \"2005-10-04T19:00:47.137Z\",\n  \"createdAt\": \"2017-07-21T22:21:20.432Z\"\n },\n {\n  \"id\": \"laborum\",\n  \"name\": \"nulla occaecat adipisicing\",\n  \"updatedAt\": \"1993-08-27T08:21:44.698Z\",\n  \"createdAt\": \"1944-01-04T06:05:14.401Z\"\n }\n]"
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types"
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Add menu type",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "<Bearer Token>",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "id",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/menu/types/add",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"menu",
+												"types",
+												"add"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "id",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types/add",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types",
+														"add"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "true"
+										},
+										{
+											"name": "Data Validation Failed",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "id",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types/add",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types",
+														"add"
+													]
+												}
+											},
+											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+											"code": 422,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n {\n  \"field\": \"in dolor in eu\",\n  \"message\": \"do\"\n },\n {\n  \"field\": \"adipisicing aliquip Excepteur officia\",\n  \"message\": \"in\"\n }\n]"
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "id",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types/add",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types",
+														"add"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Bad Request",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "id",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types/add",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types",
+														"add"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Edit menu type",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "<Bearer Token>",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "id",
+													"value": "<string>",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "<string>",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/manage/menu/types/edit?id=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"menu",
+												"types",
+												"edit"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "id",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types/edit?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types",
+														"edit"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Data Validation Failed",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "id",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types/edit?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types",
+														"edit"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+											"code": 422,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n {\n  \"field\": \"in dolor in eu\",\n  \"message\": \"do\"\n },\n {\n  \"field\": \"adipisicing aliquip Excepteur officia\",\n  \"message\": \"in\"\n }\n]"
+										},
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "id",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types/edit?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types",
+														"edit"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "true"
+										},
+										{
+											"name": "Bad Request",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "id",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types/edit?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types",
+														"edit"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "id",
+															"value": "<string>",
+															"type": "text"
+														},
+														{
+															"key": "name",
+															"value": "<string>",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types/edit?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types",
+														"edit"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Remove menu type",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "<Bearer Token>",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/manage/menu/types/remove?id=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"manage",
+												"menu",
+												"types",
+												"remove"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<string>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types/remove?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types",
+														"remove"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+										},
+										{
+											"name": "Bad Request",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types/remove?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types",
+														"remove"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"name\": \"aliquip commodo\",\n \"message\": \"fugiat sunt laboris\",\n \"code\": -73820956,\n \"status\": -87200996,\n \"type\": \"ad dolore\"\n}"
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types/remove?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types",
+														"remove"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/manage/menu/types/remove?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"manage",
+														"menu",
+														"types",
+														"remove"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "true"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{access_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "<Bearer Token>",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/profile",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"profile"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Profile",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"id\": 88375677,\n \"phone\": \"occaecat enim\",\n \"email\": \"in dolor eu id\",\n \"name\": \"elit dolor\",\n \"lastName\": \"anim consectetur aliqua incididunt\",\n \"secondName\": \"dolor ullamco velit\",\n \"roles\": [\n  {\n   \"role\": \"amet\",\n   \"name\": \"ad nostrud Duis eiusmo\"\n  },\n  {\n   \"role\": \"minim Ut\",\n   \"name\": \"cupidatat nisi nostrud laborum ipsum\"\n  }\n ],\n \"status\": {\n  \"code\": 12594472,\n  \"name\": \"aliquip\"\n },\n \"isActive\": true,\n \"updatedAt\": \"2020-08-05T12:18:11.106Z\",\n \"createdAt\": \"1999-09-16T08:06:21.871Z\"\n}"
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://rest-test.machineheads.ru",
+			"type": "string"
+		}
+	]
+}
